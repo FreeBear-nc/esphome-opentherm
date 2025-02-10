@@ -23,6 +23,7 @@ logger:
 
 api:
 ota:
+  platform: esphome
 wifi:
   ap:
     ssid: "Thermostat"
@@ -56,6 +57,11 @@ output:
 
 number:
   - platform: opentherm
+## t_set and t_set_ch2 already used as outputs.
+##    t_set:
+##      name: "Control setpoint"
+##    t_set_ch2:
+##      name: "Control setpoint 2"
     cooling_control:
       name: "Boiler Cooling control signal"
     t_dhw_set:
@@ -66,6 +72,8 @@ number:
       name: "Boiler Room Setpoint"
     t_room_set_ch2:
       name: "Boiler Room Setpoint CH2"
+    max_rel_mod_level:
+      name: "Maximum relative modulation level"
 
 sensor:
   - platform: opentherm
@@ -117,10 +125,39 @@ sensor:
       name: "Boiler Upper bound for adjustement of max CH setpoint"
     max_t_set_lb:
       name: "Boiler Lower bound for adjustement of max CH setpoint"
+    otc_ratio_ub:
+      name: "OTC upper bound"
+    otc_ratio_lb:
+      name: "OTC lower bound"
     t_dhw_set:
       name: "Boiler Domestic hot water temperature setpoint"
     max_t_set:
       name: "Boiler Maximum allowable CH water setpoint"
+    otc_hc_ratio:
+      name: "OTC heat curve ratio"
+    oem_fault_code:
+      name: "OEM fault code"
+    t_heat_exchanger:
+      name: "Boiler heat exchanger temperature"
+    fan_speed:
+      name: "Boiler fan speed"
+    boiler_flame_current:
+      name: "Boiler flame current"
+    oem_diagnostic_code:
+      name: "OEM diagnostic code"
+    max_capacity:
+      name: "Maximum boiler capacity"
+    min_mod_level:
+      name: "Minimum modulation level"
+    opentherm_version_device:
+      name: "Version of OpenTherm implemented by slave"
+    device_type:
+      name: "Slave product type"
+    device_version:
+      name: "Slave product version"
+    device_id:
+      name: "Slave ID code"
+
 
   - platform: homeassistant
     id: ch_room_temperature
@@ -171,6 +208,18 @@ binary_sensor:
       name: "Boiler DHW setpoint read/write"
     max_ch_setpoint_rw:
       name: "Boiler CH maximum setpoint read/write"
+    service_request:
+      name: "Service Request"
+    lockout_reset:
+      name: "Lockout Reset"
+    low_water_pressure:
+      name: "Low Water Pressure"
+    flame_fault:
+      name: "Flame Fault"
+    air_pressure_fault:
+      name: "Air Pressure Fault"
+    water_over_temperature:
+      name: "Water Over Temperature"
 
 switch:
   - platform: opentherm
@@ -186,6 +235,12 @@ switch:
       name: "Boiler Outside temperature compensation active"
     ch2_active:
       name: "Boiler Central Heating 2 active"
+    sm_active:
+      name: "Summer mode active"
+    dhw_block:
+      name: "DHW Blocking"
+    lock_out_reset:
+      name: "Boiler Lock-out Reset"
 
 climate:
   - platform: pid
