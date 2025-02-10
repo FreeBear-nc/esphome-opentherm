@@ -340,7 +340,7 @@ SENSORS: Schema[SensorSchema] = Schema({
         "accuracy_decimals": 2,
         "device_class": DEVICE_CLASS_TEMPERATURE,
         "state_class": STATE_CLASS_MEASUREMENT,
-        "message": "OTCratio",
+        "message": "Hcratio",
         "keep_updated": True,
         "message_data": "f88",
     }),
